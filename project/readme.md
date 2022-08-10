@@ -7,3 +7,8 @@ front-end
 broker-service
   docker-compose up -d  // generate build
   docker-compose up     // start build
+
+make up_build
+
+make stop
+make down
