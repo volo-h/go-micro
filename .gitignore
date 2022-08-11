@@ -2,6 +2,8 @@ brokerApp
 
 authApp
 
+frontApp
+
 project/db-data
 
 .DS_Store

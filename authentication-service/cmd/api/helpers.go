@@ -3,74 +3,14 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
-	"log"
 	"net/http"
-
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
-	"github.com/go-chi/cors"
 )
 
-const webPort = "80"
-
-type Config struct{}
-
-func main() {
-	app := Config{}
-
-	log.Printf("Starting broker service on port %s\n", webPort)
-
-	// define http server
-	srv := &http.Server{
-		Addr:    fmt.Sprintf(":%s", webPort),
-		Handler: app.routes(),
-	}
-
-	// start the server
-	err := srv.ListenAndServe()
-	if err != nil {
-		log.Panic(err)
-	}
-}
-
-func (app *Config) routes() http.Handler {
-	mux := chi.NewRouter()
-
-	// specify who is allowed to connect
-	mux.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{"https://*", "http://*"},
-		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
-		ExposedHeaders:   []string{"Link"},
-		AllowCredentials: true,
-		MaxAge:           300,
-	}))
-
-	mux.Use(middleware.Heartbeat("/ping"))
-
-	mux.Post("/", app.Broker)
-
-	mux.Post("/handle", app.HandleSubmission)
-
-	return mux
-}
-
-func (app *Config) Broker(w http.ResponseWriter, r *http.Request) {
-	payload := jsonResponse{
-		Error:   false,
-		Message: "Hit the broker",
-	}
-
-	_ = app.writeJSON(w, http.StatusOK, payload)
-
-}
-
 type jsonResponse struct {
-	Error   bool   `json:"error"`
+	Error bool `json:"error"`
 	Message string `json:"message"`
-	Data    any    `json:"data,omitempty"`
+	Data any `json:"data,omitempty"`
 }
 
 // readJSON tries to read the body of a request and converts it into JSON
