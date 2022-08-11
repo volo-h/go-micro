@@ -4,6 +4,8 @@ authApp
 
 frontApp
 
+loggerServiceApp
+
 project/db-data
 
 .DS_Store
