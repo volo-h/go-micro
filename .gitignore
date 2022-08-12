@@ -6,6 +6,8 @@ frontApp
 
 loggerServiceApp
 
+mailerApp
+
 project/db-data
 
 .DS_Store
