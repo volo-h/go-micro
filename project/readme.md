@@ -10,9 +10,9 @@ broker-service
 
 make up_build
 make up
+  make down
 
 make stop
-make down
 
 make start
 
@@ -23,3 +23,7 @@ https://www.mongodb.com/try/download/compass
 
 
 mongodb://admin:password@localhost:27017/logs?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
+
+# mailhog web ui
+http://localhost:8025/
+
