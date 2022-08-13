@@ -28,3 +28,4 @@ mongodb://admin:password@localhost:27017/logs?authSource=admin&readPreference=pr
 # mailhog web ui
 http://localhost:8025/
 
+https://hub.docker.com/_/rabbitmq
