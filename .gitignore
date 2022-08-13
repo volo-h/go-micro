@@ -6,6 +6,8 @@ frontApp
 
 loggerServiceApp
 
+listenerApp
+
 mailerApp
 
 project/db-data
